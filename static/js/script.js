@@ -59,7 +59,7 @@
   
       let input =  document.getElementById('text').value;
       console.log("INPUT is ",input);
-  
+      display_curr_word("Summarizing and processing...")
       // ajax request to get the response from flask in json and play the words
         $.ajax({
             url:'/',
@@ -82,14 +82,15 @@
   function display_isl_text(words)
     {
         let p = document.getElementById("isl_text");
-        p.textContent="";
+        p.innerHTML="→";
         Object.keys(words).forEach(function(key) 
         {
           if(key !== "0"){
             if(pauseArray.includes(Number(key))){
-              p.textContent += "<br>"
+              p.innerHTML += "<br>"
+              p.innerHTML += "→"
             }
-            p.textContent+= words[key]+" ";
+            p.innerHTML+= words[key]+" ";
           }
         });
     }
@@ -97,7 +98,7 @@
     function display_curr_word(word)
     {
         let p = document.querySelector(".curr_word_playing");
-        p.textContent=word;
+        p.innerHTML=word;
         p.style="color:Red; font-size:24px;font-decoration:bold;";
     }
   
@@ -106,7 +107,7 @@
     {
      
       let p = document.querySelector(".curr_word_playing");
-      p.textContent="Some error occurred (Probably Sigml file of the word/letter is not proper)";
+      p.innerHTML="Some error occurred (Probably Sigml file of the word/letter is not proper)";
       p.style="color:Red; font-size:24px;font-decoration:bold;";
     }
   

@@ -16,6 +16,7 @@ import sys
 import time
 import ssl
 import re
+import requests
 
 ssl._create_default_https_context = ssl._create_unverified_context
 from flask import Flask,request,render_template,send_from_directory,jsonify
@@ -359,7 +360,7 @@ def clear_all():
 
 # dict for sending data to front end in json
 final_words_dict = {}
-
+final_words_dict[0]=[]
 @app.route('/',methods=['GET'])
 def index():
 	clear_all();
@@ -371,8 +372,15 @@ def index():
 def flask_test():
 	clear_all();
 	final_words_dict.clear();
+	final_words_dict[0]=[]
 	text = request.form.get('text') #gets the text data from input field of front end
 	print("text is", text)
+	if (len(text) > 100):
+		r = requests.post(url='https://kabita-choudhary-summary.hf.space/run/predict', json={"data": [text]})
+		if (r.json()['data'][0]) != "":
+			text = r.json()['data'][0]
+			print("Transaltion DONE")
+			print(text)
 	split_text = re.split(r'[.!?]+', text)
 	sentences = []
 	for p in split_text:
@@ -400,8 +408,7 @@ def flask_test():
 				start+=1
 
 		clear_all();
-		final_words_dict[start]='.'
-		start+=1
+		final_words_dict[0]+=[start]
 	
 	print("---------------Final words dict--------------");
 	print(final_words_dict)
