@@ -398,10 +398,11 @@ def flask_test():
 			for word in words:
 				final_words_dict[start]=word
 				start+=1
-		
+
 		clear_all();
-		
-		
+		final_words_dict[start]='.'
+		start+=1
+	
 	print("---------------Final words dict--------------");
 	print(final_words_dict)
 
