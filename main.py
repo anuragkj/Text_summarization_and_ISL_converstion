@@ -15,7 +15,6 @@ import zipfile
 import sys
 import time
 import ssl
-
 import re
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -299,7 +298,7 @@ def final_output(input):
 
 	return fin_words
 
-final_output_in_sent=[];
+final_output_in_sent = []
 
 # converts the final list of words in a final list with letters seperated if needed
 def convert_to_final():
@@ -355,33 +354,54 @@ def clear_all():
 	final_words.clear();
 	final_words_detailed.clear();
 	final_output_in_sent.clear();
-	final_words_dict.clear();
+	
 
 
 # dict for sending data to front end in json
-final_words_dict = {};
+final_words_dict = {}
 
 @app.route('/',methods=['GET'])
 def index():
 	clear_all();
+	final_words_dict.clear();
 	return render_template('index.html')
 
 
 @app.route('/',methods=['GET','POST'])
 def flask_test():
 	clear_all();
+	final_words_dict.clear();
 	text = request.form.get('text') #gets the text data from input field of front end
 	print("text is", text)
+	split_text = re.split(r'[.!?]+', text)
+	sentences = []
+	for p in split_text:
+		p = p.strip()
+		ini = ""
+		for q in p:
+			if q.isalnum() or (q.isspace()):
+				ini+=q
+		if ini!="":
+			sentences.append(ini)
+	print(sentences)
+	
 	if(text==""):
 		return "";
 
-	take_input(text)
+	start = 1
+	for k in sentences:
+		take_input(k)
+		print(final_output_in_sent)
 
-	# fills the json 
-	for words in final_output_in_sent:
-		for i,word in enumerate(words,start=1):
-			final_words_dict[i]=word;
-
+		# fills the json 
+		for words in final_output_in_sent:
+			for word in words:
+				final_words_dict[start]=word
+				start+=1
+		
+		clear_all();
+		
+		
 	print("---------------Final words dict--------------");
 	print(final_words_dict)
 
