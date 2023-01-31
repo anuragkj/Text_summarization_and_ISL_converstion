@@ -46,7 +46,7 @@
 </style>
 
 </head>
-<body onload="CWASA.init(initCfg);">
+<body onload="CWASA.init(initCfg)" class="bg-secondary">
     <script language="javascript">
 
 // console.log("hello");
@@ -78,85 +78,97 @@ function startPlayer(sigmlURL) {
     CWASA.getLogger("myLog","warn");
 }
 </script>
-<div class="main">
-    <div class="container">
-        <!-- animation player frame -->
-        <div class="player card" >
-            <a id="player"></a>
-            <div class="anim"> 
-                <div style="box-sizing: border-box; width: 100%; height: 100%; padding: 15px;" >
-                    <table align="center" style="width:100%; height:100%;" >
-                    <tr align="center">
-                    
-                    <!--================================================================-->
-                    <!-- CWA signing avatar panel 0 -->
-                    <!--================================================================-->
-                    <!-- Replaced by an avatar panel -->
-                    <!--================================================================-->
-                    <td width="100%" height="90%" >
-                        <div class="CWASAAvatar av0" align="center" ></div>
-                    </td>
-                    <!--================================================================-->
-                    
-                    </tr><tr>
-                    
-                    <td align="center" >
-                    
-                    <span class="CWASAAvMenu av0" ></span>
-                    <input type="button" value="Sign" class="bttnPlaySiGMLURL av0" />
-                    <input type="button" value="Stop" class="bttnStop av0" />
-                    <span class="CWASASpeed av0" ></span>
-                    <br/>
-                    
-                    <span style="font-size: 90%;" >
-                    Sign/Frame:
-                    <input class="txtSF av0" value="0/0" type="text">
-                    Gloss:
-                    <input class="txtGloss av0" value="[none]" type="text">
-                    </span>
-                    <span class="spanInfo av0">
-                        Status:
-                        <input type="text" class="statusExtra av0">
+<div class="main ">
+    <nav class="navbar navbar-dark bg-dark my-auto">
+        <a class="navbar-brand" href="#">
+          <img src="http://www.bits-pilani.ac.in/Uploads/University/GJCcompetitions/Winners/Nirant_2012C6PS694P_PIL.png" width="40" height="40" class="d-inline-block align-top mx-3" alt="">
+          <span class="text-light ">Text to ISL</span>
+        </a>
+    </nav>
+    <div class="container ">
+        <div class="text-center">
+            <!-- animation player frame -->
+            <div class="player card my-3 mx-auto" >
+                <a id="player"></a>
+                <div class="anim"> 
+                    <div style="box-sizing: border-box; width: 100%; height: 100%; padding: 15px;" >
+                        <table align="center" style="width:100%; height:100%;" >
+                        <tr align="center">
+                        
+                        <!--================================================================-->
+                        <!-- CWA signing avatar panel 0 -->
+                        <!--================================================================-->
+                        <!-- Replaced by an avatar panel -->
+                        <!--================================================================-->
+                        <td width="100%" height="90%" >
+                            <div class="CWASAAvatar av0" align="center" ></div>
+                        </td>
+                        <!--================================================================-->
+                        
+                        </tr><tr>
+                        
+                        <td align="center" >
+                        
+                        <span class="CWASAAvMenu av0" ></span>
+                        <input type="button" value="Sign" class="bttnPlaySiGMLURL av0" />
+                        <input type="button" value="Stop" class="bttnStop av0" />
+                        <span class="CWASASpeed av0" ></span>
+                        <br/>
+                        
+                        <span style="font-size: 90%;" >
+                        Sign/Frame:
+                        <input class="txtSF av0" value="0/0" type="text">
+                        Gloss:
+                        <input class="txtGloss av0" value="[none]" type="text">
                         </span>
-                    <!--  CachedSiGML URL  -->
-                    <input type="text" id="URLText" class="txtSiGMLURL av0 undisplayed" value="" />
-                    
-                    <script language="javascript">
-                    // Set default sign
-                    // console.log("here");
-                    setSiGMLURL("SignFiles/B.sigml");
-                    
-                    </script>
-                    
-                    </td>
-                    </tr>
-                    
-                    </table>
-                    
-                    </div>
-                    
+                        <span class="spanInfo av0">
+                            Status:
+                            <input type="text" class="statusExtra av0">
+                            </span>
+                        <!--  CachedSiGML URL  -->
+                        <input type="text" id="URLText" class="txtSiGMLURL av0 undisplayed" value="" />
+                        
+                        <script language="javascript">
+                        // Set default sign
+                        // console.log("here");
+                        setSiGMLURL("SignFiles/B.sigml");
+                        
+                        </script>
+                        
+                        </td>
+                        </tr>
+                        
+                        </table>
+                        
+                        </div>
+                        
+                </div>
+                
             </div>
-            
-        </div>
-        <!-- input for text -->
-        <div class="englishInput">
-            <form method="POST" id= 'form'>
-                Input:<input id="text" type="text" name="text" autocomplete="off">
-                <button id = "submit"  >Submit</button>
-                </form>
-            <!-- <button class="btn-primary bttnPlaySiGMLURL av0">Submit</button> -->
-            <!-- <input type="button" value="Sign" class="bttnPlaySiGMLURL av0" /> -->
-        </div>
-        <div class="curr_playing">
-            Current Word :- <p class="curr_word_playing"></p>
-        </div>
-        <div class="islOutput">
-            ISL text: <p id ="isl_text"></p>
+            <!-- input for text -->
+            <div class="textpart card my-0 mx-auto">
+                <div class="englishInput">
+                    <form method="POST" id= 'form'>
+                        Input:<input id="text" type="text" name="text" autocomplete="off">
+                        <button id = "submit"  >Submit</button>
+                        </form>
+                    <!-- <button class="btn-primary bttnPlaySiGMLURL av0">Submit</button> -->
+                    <!-- <input type="button" value="Sign" class="bttnPlaySiGMLURL av0" /> -->
+                </div>
+                <div class="curr_playing">
+                    Current Word :- <p class="curr_word_playing"></p>
+                </div>
+                <div class="islOutput">
+                    ISL text: <p id ="isl_text"></p>
 
+                </div>
+            </div> 
+        
         </div>
-       
     </div>
+    
 </div>
+
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/player.js') }}"></script> -->
